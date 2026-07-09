@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Surgical Oncology Topic Modeling Dashboard</title>
+  <meta
+    name="description"
+    content="Interactive static dashboard for exploring surgical oncology topic modeling results."
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <nav class="topbar" aria-label="Main navigation">
+    <a class="brand" href="#overview">SurgOnc Topics</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      ☰
+    </button>
+
+    <div class="nav" id="navMenu">
+      <a href="#overview">Overview</a>
+      <a href="#figures">Figures</a>
+      <a href="#methods">Methods</a>
+      <a href="#download">Data</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="overview">
+    <div class="hero-grid">
+      <div>
+        <div class="kicker">Interactive BERTopic research dashboard</div>
+
+        <h1>Surgical oncology literature, mapped by topic and time.</h1>
+
+        <p>
+          Explore major themes in surgical oncology publications using an
+          interactive topic model. This static dashboard combines a document-level
+          topic landscape, temporal topic trends, and semantic topic similarity
+          in one shareable website.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#figures">Explore figures</a>
+          <a class="button secondary" href="#methods">View methods</a>
+        </div>
+      </div>
+
+      <aside class="hero-note" aria-label="Dashboard contents">
+        <h3>Dashboard contents</h3>
+        <ul>
+          <li>Topic landscape from reduced embeddings</li>
+          <li>Topic counts across publication years</li>
+          <li>Topic proportions across publication years</li>
+          <li>Topic similarity heatmap</li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="metrics" aria-label="Dashboard summary metrics">
+      <article class="metric">
+        <span>Documents</span>
+        <strong>24,345</strong>
+        <small>Update if your corpus size changes</small>
+      </article>
+
+      <article class="metric">
+        <span>Final topics</span>
+        <strong>28</strong>
+        <small>Excluding outlier topic, if desired</small>
+      </article>
+
+      <article class="metric">
+        <span>Years covered</span>
+        <strong>1999–2024</strong>
+        <small>Update from your metadata</small>
+      </article>
+
+      <article class="metric">
+        <span>Model</span>
+        <strong>BERTopic</strong>
+        <small>Static interactive output</small>
+      </article>
+    </section>
+
+    <section class="section-head" id="figures">
+      <div>
+        <h2>Interactive figures</h2>
+        <p>
+          Each panel embeds a precomputed interactive HTML figure. The Plotly
+          figures live directly inside the <code>figures/</code> folder, while
+          the datamap topic landscape lives inside
+          <code>figures/topic_landscape/</code> with its required data files.
+        </p>
+      </div>
+
+      <div class="pill-row" aria-label="Dashboard tags">
+        <span class="pill">Static hosting</span>
+        <span class="pill">Interactive HTML</span>
+        <span class="pill">GitHub Pages-ready</span>
+      </div>
+    </section>
+
+    <section class="dashboard-grid">
+
+      <article class="card wide">
+        <div class="card-header">
+          <div>
+            <h3>Topic landscape</h3>
+            <p>
+              Two-dimensional embedding map of documents, colored by assigned
+              topic.
+            </p>
+          </div>
+          <a
+            class="open-link"
+            href="figures/topic_landscape/index.html"
+            target="_blank"
+            rel="noopener"
+          >
+            Open full screen
+          </a>
+        </div>
+
+        <iframe
+          class="figure-frame large"
+          src="figures/topic_landscape/index.html"
+          title="Topic landscape interactive figure"
+          loading="lazy"
+        ></iframe>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <h3>Topic counts over time</h3>
+            <p>
+              Number of studies assigned to each topic by publication year.
+            </p>
+          </div>
+          <a
+            class="open-link"
+            href="figures/topic_counts_over_time_hover_highlight.html"
+            target="_blank"
+            rel="noopener"
+          >
+            Open
+          </a>
+        </div>
+
+        <iframe
+          class="figure-frame"
+          src="figures/topic_counts_over_time_hover_highlight.html"
+          title="Topic counts over time interactive figure"
+          loading="lazy"
+        ></iframe>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <h3>Topic proportions over time</h3>
+            <p>
+              Percent of studies assigned to each topic by publication year.
+            </p>
+          </div>
+          <a
+            class="open-link"
+            href="figures/topic_proportions_over_time_hover_highlight.html"
+            target="_blank"
+            rel="noopener"
+          >
+            Open
+          </a>
+        </div>
+
+        <iframe
+          class="figure-frame"
+          src="figures/topic_proportions_over_time_hover_highlight.html"
+          title="Topic proportions over time interactive figure"
+          loading="lazy"
+        ></iframe>
+      </article>
+
+      <article class="card wide">
+        <div class="card-header">
+          <div>
+            <h3>Topic similarity heatmap</h3>
+            <p>
+              Pairwise semantic similarity between final labeled topics.
+            </p>
+          </div>
+          <a
+            class="open-link"
+            href="figures/topic_similarity_heatmap_all_topics_clustered.html"
+            target="_blank"
+            rel="noopener"
+          >
+            Open full screen
+          </a>
+        </div>
+
+        <iframe
+          class="figure-frame large"
+          src="figures/topic_similarity_heatmap_all_topics_clustered.html"
+          title="Topic similarity heatmap interactive figure"
+          loading="lazy"
+        ></iframe>
+      </article>
+
+    </section>
+
+    <section class="methods" id="methods">
+      <div>
+        <h2>Methods note</h2>
+        <p>
+          Topic assignments, labels, embeddings, temporal summaries, and
+          aggregate statistics are precomputed before deployment. The website
+          itself is static, meaning the browser handles figure interactivity
+          without requiring a live Python or R server.
+        </p>
+      </div>
+
+      <div class="methods-card">
+        <h3>Suggested workflow</h3>
+        <ol>
+          <li>Run BERTopic in Python.</li>
+          <li>Export interactive figures as standalone HTML files.</li>
+          <li>Place Plotly HTML files directly in the <code>figures/</code> folder.</li>
+          <li>
+            Place the datamap HTML and its required
+            <code>datamap_*.zip</code> files together inside
+            <code>figures/topic_landscape/</code>.
+          </li>
+          <li>Push the folder to a GitHub repository.</li>
+          <li>Enable GitHub Pages for the repository.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="download" id="download">
+      <h2>Data availability</h2>
+      <p>
+        Add links here for de-identified summary data, topic labels, model
+        metadata, or a manuscript supplement. Avoid exposing protected health
+        information, copyrighted full-text, or sensitive unpublished data.
+      </p>
+
+      <div class="download-grid">
+        <a class="download-card" href="#" aria-disabled="true">
+          <strong>Topic summary CSV</strong>
+          <span>Coming soon</span>
+        </a>
+
+        <a class="download-card" href="#" aria-disabled="true">
+          <strong>Topic labels</strong>
+          <span>Coming soon</span>
+        </a>
+
+        <a class="download-card" href="#" aria-disabled="true">
+          <strong>Methods supplement</strong>
+          <span>Coming soon</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Created for exploratory analysis of surgical oncology research themes.
+      Update this footer with your group name, institution, citation, or contact.
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
