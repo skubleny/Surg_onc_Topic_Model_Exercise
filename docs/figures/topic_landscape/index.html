@@ -248,9 +248,9 @@ const otherSelectionItems=Object.keys(this.selectedIndicesByItem).filter(key=>ke
       });
       return combinedTable;
     }
-    if (!("CompressionStream" in window)) {
+    if (!("DecompressionStream" in window)) {
       throw new Error(
-        "Your browser doesn't support the Compression Streams API " +
+        "Your browser doesn't support the Decompression Streams API " +
           "https://developer.mozilla.org/docs/Web/API/Compression_Streams_API#browser_compatibility",
       );
     }
@@ -261,7 +261,7 @@ const otherSelectionItems=Object.keys(this.selectedIndicesByItem).filter(key=>ke
 
     const currentURL = self.location.pathname;
     const directoryPath = currentURL.substring(0, currentURL.lastIndexOf('/') + 1);
-    const originURL = self.location.origin + directoryPath;
+    const originURL = self.location.origin + directoryPath.replace(/\/$/, '');
 
     const pointDataEncoded = [
       `${originURL}/datamap_point_data_0.zip`,
